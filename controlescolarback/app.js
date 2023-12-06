@@ -3,8 +3,6 @@ var mysql = require("mysql");
 var app = express();
 app.use(express.json());
 
-
-
 // Configurar la conexion
 var conexion = mysql.createConnection({
   host: "localhost",
@@ -24,7 +22,7 @@ conexion.connect(function (error) {
 
 const cors = require("cors");
 const corsOptions = {
-  origin: '*',
+  origin: "*",
   credentials: true,
   optionSuccessStatus: 200,
 };
@@ -37,7 +35,7 @@ app.listen("3000", (req, res) => {
 app.get("/", function (req, res) {
   res.send("<h1>Ruta de inicio</h1>");
 });
-//get para consultas 
+//get para consultas
 app.get("/api/maestros", function (req, res) {
   conexion.query("SELECT * FROM maestros", (error, filas) => {
     if (error) {
@@ -90,54 +88,59 @@ app.get("/api/carga", function (req, res) {
 
 //insertar datos
 app.post("/api/maestros", (req, res) => {
-  let data = { clavemaestro: req.body.cla,
+  let data = {
+    clavemaestro: req.body.cla,
     nombre: req.body.nom,
     departamento: req.body.dep,
-    estatus: req.body.est,
-  }
+    estatus: req.body.est
+  };
   let sql = "INSERT INTO maestros SET ?";
-  conexion.query(sql, data, (error, results)=>{
-    if(error){
+  conexion.query(sql, data, (error, results) => {
+    if (error) {
       throw error;
-  }else{
+    } else {
       res.send(results);
-  }
+    }
   });
 });
 
+
 app.post("/api/alumnos", (req, res) => {
-  let data = { ncontrol: req.body.ncon,
+  let data = {
+    ncontrol: req.body.ncon,
     nombre: req.body.nom,
     carrera: req.body.car,
     estatus: req.body.est,
-  }
+  };
   let sql = "INSERT INTO alumnos SET ?";
-  conexion.query(sql, data, (error, results)=>{
-    if(error){
+  conexion.query(sql, data, (error, results) => {
+    if (error) {
       throw error;
-  }else{
+    } else {
       res.send(results);
-  }
+    }
   });
 });
 
 app.post("/api/materias", (req, res) => {
-  let data = { clavemateria: req.body.cla,
+  let data = {
+    clavemateria: req.body.cla,
     nombre: req.body.nom,
     credito: req.body.cre,
-  }
+  };
   let sql = "INSERT INTO materia SET ?";
-  conexion.query(sql, data, (error, results)=>{
-    if(error){
+  conexion.query(sql, data, (error, results) => {
+    if (error) {
       throw error;
-  }else{
+    } else {
       res.send(results);
-  }
+    }
   });
 });
 
 app.post("/api/grupos", (req, res) => {
-  let data = { clavegrupo: req.body.clg,
+  let data = {
+    clavegrupo: req.body.clg,
     clavemateria: req.body.claMat,
     clavemaestro: req.body.claMto,
     limitealumnos: req.body.lim,
@@ -146,30 +149,31 @@ app.post("/api/grupos", (req, res) => {
     horariomartes: req.body.horM,
     horariomiercoles: req.body.horMi,
     horariojueves: req.body.horJ,
-    horarioViernes: req.body.horV
-  }
+    horarioViernes: req.body.horV,
+  };
   let sql = "INSERT INTO grupos SET ?";
-  conexion.query(sql, data, (error, results)=>{
-    if(error){
+  conexion.query(sql, data, (error, results) => {
+    if (error) {
       throw error;
-  }else{
+    } else {
       res.send(results);
-  }
+    }
   });
 });
 
 //actualizar
-app.put('api/maestros/:id', (req,res)=>{
+app.put("api/maestros/:id", (req, res) => {
   let clave = req.params.id;
   let nombre = req.params.nom;
-  let departamento  = req.params.dep;
+  let departamento = req.params.dep;
   let estatus = req.body.est;
-  let sql = "UPDATE maestros SET nombre = ?, departamento =?, estatus=? WHERE clave=?";
-  conexion.query(sql, [nombre, departamento,estatus], (error, results)=>{
-      if(error){
-          throw error;
-      }else{
-          res.send(results);
-      }
+  let sql =
+    "UPDATE maestros SET nombre = ?, departamento =?, estatus=? WHERE clave=?";
+  conexion.query(sql, [nombre, departamento, estatus], (error, results) => {
+    if (error) {
+      throw error;
+    } else {
+      res.send(results);
+    }
   });
 });
