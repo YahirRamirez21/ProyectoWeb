@@ -1,12 +1,15 @@
 <template>
-    <h1>Materias</h1>
+    <div>
+        <h1>Materias</h1>
+        <MateriasLista></MateriasLista>
+    </div>
 </template>
 
 <script>
-
+    import MateriasLista from '../components/MateriasLista.vue'
     export default {
         name: "Materias",
-        components: { },
+        components: { MateriasLista },
         data: function() {
             return {}
         },

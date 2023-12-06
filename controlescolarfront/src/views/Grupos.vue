@@ -1,12 +1,16 @@
 <template>
-    <h1>Grupos</h1>
+    <div>
+        <h1>Grupos</h1>
+        <GruposLista></GruposLista>
+    </div>
 </template>
 
 <script>
+    import GruposLista from '../components/GruposLista.vue';
 
     export default {
         name: "Grupos",
-        components: { },
+        components: { GruposLista },
         data: function() {
             return {}
         },
