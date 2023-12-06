@@ -1,11 +1,11 @@
 <template>
-    <h1>Maestros</h1>
+    <h1>Materias</h1>
 </template>
 
 <script>
 
     export default {
-        name: "Maestros",
+        name: "Materias",
         components: { },
         data: function() {
             return {}

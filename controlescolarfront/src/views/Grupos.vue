@@ -1,11 +1,11 @@
 <template>
-    <h1>Maestros</h1>
+    <h1>Grupos</h1>
 </template>
 
 <script>
 
     export default {
-        name: "Maestros",
+        name: "Grupos",
         components: { },
         data: function() {
             return {}
