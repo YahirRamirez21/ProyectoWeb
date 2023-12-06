@@ -2,10 +2,10 @@
     <div id="app">
         <nav class="nav">
             <router-link class="enlace" to="/maestros">Maestros</router-link>
-            <router-link class="enlace" to="/maestros">Alumnos</router-link>
-            <router-link class="enlace" to="/maestros">Grupos</router-link>
-            <router-link class="enlace" to="/maestros">Materias</router-link>
-            <router-link class="enlace" to="/maestros">Carga</router-link>
+            <router-link class="enlace" to="/alumnos">Alumnos</router-link>
+            <router-link class="enlace" to="/grupos">Grupos</router-link>
+            <router-link class="enlace" to="/materias">Materias</router-link>
+            <router-link class="enlace" to="/carga">Carga</router-link>
          </nav>
         <router-view/>
     </div>

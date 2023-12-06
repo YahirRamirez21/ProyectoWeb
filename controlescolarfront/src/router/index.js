@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Maestros from '../views/Maestros.vue'
+import Alumnos from '../views/Alumnos.vue'
+import Grupos from '../views/Grupos.vue'
+import Materias from '../views/Materias.vue'
+import Carga from '../views/Carga.vue'
 
 
 
@@ -26,12 +30,12 @@ const routes = [
   {
     path: '/materias',
     name: 'materias',
-    component: Materia
+    component: Materias
   },
   {
     path: '/carga',
     name: 'carga',
-    component: Maestros
+    component: Carga
   }
 ]
 
