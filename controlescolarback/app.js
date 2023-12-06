@@ -1,7 +1,7 @@
 var express = require('express');
 var mysql = require('mysql');
 var app = express();
-app.use(express.json());
+app.use(express.json);
 
 
 // Configurar la conexion
@@ -9,7 +9,7 @@ var conexion = mysql.createConnection({
     host: "localhost",
     user: "root", 
     password: "",
-    database: "controlescolar",
+    database: "controlescolar"
 });
 
 
@@ -23,9 +23,67 @@ conexion.connect(function(error) {
 });
 
 app.listen('3000', (req, res) => {
-console.log("Conectado a puerto 3000")
-});
+    console.log("Servidor en puerto 3000");
+}); 
 
 app.get("/", function(req, res) {
     res.send("<h1>Ruta de inicio</h1>");
+});
+//get para consultas
+app.get("api/maestros", function(req, res){
+    conexion.query("SELECT * FROM maestros", (error, filas)=>{
+        if(error){
+            throw error;
+        }else{
+            res.send(filas)
+        }
+    });
+});
+
+app.get("api/alumnos", function(req, res){
+    conexion.query("SELECT * FROM alumnos", (error, filas)=>{
+        if(error){
+            throw error;
+        }else{
+            res.send(filas)
+        }
+    });
+});
+
+app.get("api/materia", function(req, res){
+    conexion.query("SELECT * FROM materia", (error, filas)=>{
+        if(error){
+            throw error;
+        }else{
+            res.send(filas)
+        }
+    });
+});
+
+app.get("api/grupos", function(req, res){
+    conexion.query("SELECT * FROM grupos", (error, filas)=>{
+        if(error){
+            throw error;
+        }else{
+            res.send(filas)
+        }
+    });
+});
+
+app.get("api/carga", function(req, res){
+    conexion.query("SELECT * FROM carga", (error, filas)=>{
+        if(error){
+            throw error;
+        }else{
+            res.send(filas)
+        }
+    });
+});
+
+//insertar datos
+app.post("api/maestros", (req,res) => {
+    let data = {clave: 
+
+    }
+
 });
