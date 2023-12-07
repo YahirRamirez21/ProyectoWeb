@@ -162,18 +162,112 @@ app.post("/api/grupos", (req, res) => {
 });
 
 //actualizar
-app.put("api/maestros/:id", (req, res) => {
+app.put("/api/maestros/:id", (req, res) => {
   let clave = req.params.id;
-  let nombre = req.params.nom;
-  let departamento = req.params.dep;
+  let nombre = req.body.nom;
+  let departamento = req.body.dep;
   let estatus = req.body.est;
   let sql =
-    "UPDATE maestros SET nombre = ?, departamento =?, estatus=? WHERE clave=?";
-  conexion.query(sql, [nombre, departamento, estatus], (error, results) => {
+    "UPDATE maestros SET nombre = ?, departamento =?, estatus=? WHERE clavemaestros=?";
+  conexion.query(sql, [nombre, departamento, estatus, clave], (error, results) => {
     if (error) {
       throw error;
     } else {
       res.send(results);
     }
   });
+});
+
+app.put("/api/alumnos/:id", (req, res) => {
+  let ncontrol = req.params.cla;
+  let nombre = req.body.nom;
+  let carrera = req.body.car;
+  let estatus = req.body.est;
+  let sql =
+    "UPDATE alumnos SET nombre = ?, carrera =?, estatus=? WHERE ncontrol=?";
+  conexion.query(sql, [nombre, carrera, estatus, ncontrol], (error, results) => {
+    if (error) {
+      throw error;
+    } else {
+      res.send(results);
+    }
+  });
+});
+
+app.put("/api/materias/:id", (req, res) => {
+  let clavemateria = req.params.id;
+  let nombre = req.body.nom;
+  let creditos = req.body.cre;
+  let sql =
+    "UPDATE materia SET nombre = ?, creditos =? WHERE clavemateria=?";
+  conexion.query(sql, [nombre, creditos, clavemateria], (error, results) => {
+    if (error) {
+      throw error;
+    } else {
+      res.send(results);
+    }
+  });
+});
+
+app.put("/api/grupos/:id", (req, res) => {
+  let clavegrupo = req.params.cla;
+  let clavemateria = req.body.claMat;
+  let clavemaestro = req.body.claMaes;
+  let limitealumnos = req.body.lim;
+  let  inscripcion = req.body.ins;
+  let  horariolunes = req.body.horL;
+  let  horariomartes = req.body.horM;
+  let  horariomiercoles = req.body.horMi;
+  let  horariojueves = req.body.horJ;
+  let  horarioviernes = req.body.horV;
+  let sql =
+    "UPDATE grupos SET clavemateria = ?, clavemaestro =?, limitealumnos =?, inscripcion =?, horariolunes =?, horariomartes =?, horariomiercoles =?, horariojueves =?, horarioviernes =? WHERE clavegrupo=?";
+  conexion.query(sql, [clavemateria, clavemaestro, limitealumnos, inscripcion, horariolunes, horariomartes, horariomiercoles, horariojueves, horarioviernes, clavegrupo], (error, results) => {
+    if (error) {
+      throw error;
+    } else {
+      res.send(results);
+    }
+  });
+});
+
+//Delete
+app.delete('/api/maestros/:id', (req, res)=>{
+  conexion.query("DELETE FROM maestros WHERE clavemaestro=?", [req.params.id], function(error, filas){
+    if(error){
+      throw error;
+    }else{
+      res.send(filas);
+    }
+  })
+});
+
+app.delete('/api/alumnos/:id', (req, res)=>{
+  conexion.query("DELETE FROM alumnos WHERE ncontrol=?", [req.params.id], function(error, filas){
+    if(error){
+      throw error;
+    }else{
+      res.send(filas);
+    }
+  })
+});
+
+app.delete('/api/materias/:id', (req, res)=>{
+  conexion.query("DELETE FROM materia WHERE clavemateria=?", [req.params.id], function(error, filas){
+    if(error){
+      throw error;
+    }else{
+      res.send(filas);
+    }
+  })
+});
+
+app.delete('/api/grupos/:id', (req, res)=>{
+  conexion.query("DELETE FROM grupos WHERE clavegrupo=?", [req.params.id], function(error, filas){
+    if(error){
+      throw error;
+    }else{
+      res.send(filas);
+    }
+  })
 });
