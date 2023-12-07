@@ -11,7 +11,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="maes in maestros" :key="art.id">
+                <tr v-for="maes in maestros" :key="maes.id">
                     <td>{{ maes.clavemaestro }}</td>
                     <td>{{ maes.nombre }}</td>
                     <td>{{ maes.departamento }}</td>

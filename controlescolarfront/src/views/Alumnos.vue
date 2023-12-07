@@ -2,6 +2,10 @@
     <div>
         <h1>Alumnos</h1>
         <AlumnoLista></AlumnoLista>
+
+        <!-- <button>Añadir</button>
+        <button @click.prevent="editarAlumno(id)">Modificar</button>
+        <button>Eliminar</button> -->
     </div>
 </template>
 

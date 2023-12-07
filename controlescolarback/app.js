@@ -56,6 +56,16 @@ app.get("/api/alumnos", function (req, res) {
   });
 });
 
+app.get("/api/alumnos/:id", function (req, res) {
+  conexion.query("SELECT * FROM alumnos WHERE ncontrol = ? LIMIT 1", [req.params.id], (error, filas) => {
+    if (error) {
+      throw error;
+    } else {
+      res.send(filas);
+    }
+  });
+});
+
 app.get("/api/materia", function (req, res) {
   conexion.query("SELECT * FROM materia", (error, filas) => {
     if (error) {

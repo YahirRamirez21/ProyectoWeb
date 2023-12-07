@@ -5,6 +5,7 @@ import Alumnos from '../views/Alumnos.vue'
 import Grupos from '../views/Grupos.vue'
 import Materias from '../views/Materias.vue'
 import Carga from '../views/Carga.vue'
+import EditarAlumno from '../components/EditarAlumno.vue'
 
 
 
@@ -21,6 +22,12 @@ const routes = [
     path: '/alumnos',
     name: 'alumnos',
     component: Alumnos
+  },
+  {
+    path: '/EditarAlumno',
+    name: 'editaralumno',
+    component: EditarAlumno,
+    props: true
   },
   {
     path: '/grupos',
