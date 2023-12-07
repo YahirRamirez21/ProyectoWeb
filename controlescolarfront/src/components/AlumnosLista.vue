@@ -1,6 +1,7 @@
 <template>
     <div class="AlumnosLista">
-        <button @click.prevent="traerAlumnos()">Alumnos</button>
+        <button @click.prevent="nuevoAlumno()">Nuevo</button>
+        <!-- <button @click.prevent="traerAlumnos()">Alumnos</button> -->
         <table>
             <thead>
                 <tr>
@@ -12,15 +13,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="alu in alumnos" :key="alu.id">
+                <tr v-for="alu in alumnos" :key="alu.ncontrol">
                     <td>{{ alu.ncontrol }}</td>
                     <td>{{ alu.nombre }}</td>
                     <td>{{ alu.carrera }}</td>
                     <td>{{ alu.estatus }}</td>
                     <td>
-                        <Button>Añadir</Button>
-                        <Button @click.prevent="editarAlumno(alu.id)">Editar</Button>
-                        <Button >Eliminar</Button>
+                        <Button @click.prevent="editarAlumno(alu.ncontrol)">Editar</Button>
+                        <Button @click.prevent="eliminarAlumno(alu.ncontrol)">Eliminar</Button>
                     </td>
                 </tr>
             </tbody>
@@ -41,6 +41,9 @@
                 alumnos: [],
             };
         },
+        created() {
+            this.traerAlumnos()
+        },  
         methods: {
             traerAlumnos: async function(){
                 let a = [];
@@ -54,9 +57,16 @@
                     });
                 this.alumnos = a;
             },
-            editarAlumno: function(id) {
-                this.$router.push({name: "editarAlumno", params: {id: id}})
-            }   
+            editarAlumno: function(ncontrol) {
+                this.$router.push({name: "editarAlumno", params: {ncontrol: ncontrol}});
+            },
+            eliminarAlumno: async function(ncontrol) {
+                await axios.delete(URL_DATOS+"/alumnos/"+ncontrol); 
+                this.traerAlumnos();
+            },
+            nuevoAlumno: function(){
+                this.$router.push({name: "nuevoAlumno", params: {}});
+            }
         }
     }
 </script>

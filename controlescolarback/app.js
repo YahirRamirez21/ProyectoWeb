@@ -189,7 +189,7 @@ app.put("/api/maestros/:id", (req, res) => {
 });
 
 app.put("/api/alumnos/:id", (req, res) => {
-  let ncontrol = req.params.cla;
+  let ncontrol = req.params.id;
   let nombre = req.body.nom;
   let carrera = req.body.car;
   let estatus = req.body.est;
@@ -220,7 +220,7 @@ app.put("/api/materias/:id", (req, res) => {
 });
 
 app.put("/api/grupos/:id", (req, res) => {
-  let clavegrupo = req.params.cla;
+  let clavegrupo = req.params.id;
   let clavemateria = req.body.claMat;
   let clavemaestro = req.body.claMaes;
   let limitealumnos = req.body.lim;
