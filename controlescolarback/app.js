@@ -46,13 +46,17 @@ app.get("/api/maestros", function (req, res) {
   });
 });
 app.get("/api/maestros/:id", function (req, res) {
-  conexion.query("SELECT * FROM maestros WHERE clavemaestro = ? LIMIT 1", [req.params.id], (error, filas) => {
-    if (error) {
-      throw error;
-    } else {
-      res.send(filas);
+  conexion.query(
+    "SELECT * FROM maestros WHERE clavemaestro = ? LIMIT 1",
+    [req.params.id],
+    (error, filas) => {
+      if (error) {
+        throw error;
+      } else {
+        res.send(filas);
+      }
     }
-  });
+  );
 });
 
 app.get("/api/alumnos", function (req, res) {
@@ -66,13 +70,17 @@ app.get("/api/alumnos", function (req, res) {
 });
 
 app.get("/api/alumnos/:id", function (req, res) {
-  conexion.query("SELECT * FROM alumnos WHERE ncontrol = ? LIMIT 1", [req.params.id], (error, filas) => {
-    if (error) {
-      throw error;
-    } else {
-      res.send(filas);
+  conexion.query(
+    "SELECT * FROM alumnos WHERE ncontrol = ? LIMIT 1",
+    [req.params.id],
+    (error, filas) => {
+      if (error) {
+        throw error;
+      } else {
+        res.send(filas);
+      }
     }
-  });
+  );
 });
 
 app.get("/api/materia", function (req, res) {
@@ -85,13 +93,17 @@ app.get("/api/materia", function (req, res) {
   });
 });
 app.get("/api/materia/:id", function (req, res) {
-  conexion.query("SELECT * FROM materia WHERE clavemateria = ? LIMIT 1", [req.params.id], (error, filas) => {
-    if (error) {
-      throw error;
-    } else {
-      res.send(filas);
+  conexion.query(
+    "SELECT * FROM materia WHERE clavemateria = ? LIMIT 1",
+    [req.params.id],
+    (error, filas) => {
+      if (error) {
+        throw error;
+      } else {
+        res.send(filas);
+      }
     }
-  });
+  );
 });
 
 app.get("/api/grupos", function (req, res) {
@@ -104,27 +116,34 @@ app.get("/api/grupos", function (req, res) {
   });
 });
 app.get("/api/grupos/:id", function (req, res) {
-  conexion.query("SELECT * FROM grupos WHERE clavegrupo = ? LIMIT 1", [req.params.id], (error, filas) => {
-    if (error) {
-      throw error;
-    } else {
-      res.send(filas);
+  conexion.query(
+    "SELECT * FROM grupos WHERE clavegrupo = ? LIMIT 1",
+    [req.params.id],
+    (error, filas) => {
+      if (error) {
+        throw error;
+      } else {
+        res.send(filas);
+      }
     }
-  });
-});
-
-app.get("/api/gruposcarga", function (req, res) {
-  conexion.query("SELECT g.clavegrupo, ma.clavemateria, ma.nombre, maes.clavemaestro, maes.nombre, g.horariolunes FROM grupos g INNER JOIN materia ma on ma.clavemateria =  g.clavemateria INNER JOIN maestros maes on maes.clavemaestro = g.clavemaestro", (error, filas) => {
-    if (error) {
-      throw error;
-    } else {
-      res.send(filas);
-    }
-  });
+  );
 });
 
 app.get("/api/carga", function (req, res) {
-  conexion.query("SELECT * FROM carga", (error, filas) => {
+  conexion.query(
+    "SELECT g.clavegrupo as clavegrupo, ma.clavemateria as clavemateria, ma.nombre as nombremateria, maes.clavemaestro as clavemaestro, maes.nombre as nombremaestro, g.horariolunes as horario, g.inscritos as inscritos, g.limitealumnos as limite FROM grupos g INNER JOIN materia ma on ma.clavemateria =  g.clavemateria INNER JOIN maestros maes on maes.clavemaestro = g.clavemaestro",
+    (error, filas) => {
+      if (error) {
+        throw error;
+      } else {
+        res.send(filas);
+      }
+    }
+  );
+});
+
+app.get("/api/carga/:id", function (req, res) {
+  conexion.query("SELECT * FROM carga WHERE ncontrol = ?",[req.params.id],(error, filas) => {
     if (error) {
       throw error;
     } else {
@@ -132,7 +151,6 @@ app.get("/api/carga", function (req, res) {
     }
   });
 });
-
 
 //insertar datos
 app.post("/api/maestros", (req, res) => {
@@ -140,7 +158,7 @@ app.post("/api/maestros", (req, res) => {
     clavemaestro: req.body.cla,
     nombre: req.body.nom,
     departamento: req.body.dep,
-    estatus: req.body.est
+    estatus: req.body.est,
   };
   let sql = "INSERT INTO maestros SET ?";
   conexion.query(sql, data, (error, results) => {
@@ -151,7 +169,6 @@ app.post("/api/maestros", (req, res) => {
     }
   });
 });
-
 
 app.post("/api/alumnos", (req, res) => {
   let data = {
@@ -217,13 +234,17 @@ app.put("/api/maestros/:id", (req, res) => {
   let estatus = req.body.est;
   let sql =
     "UPDATE maestros SET nombre = ?, departamento =?, estatus=? WHERE clavemaestro=?";
-  conexion.query(sql, [nombre, departamento, estatus, clavemaestro], (error, results) => {
-    if (error) {
-      throw error;
-    } else {
-      res.send(results);
+  conexion.query(
+    sql,
+    [nombre, departamento, estatus, clavemaestro],
+    (error, results) => {
+      if (error) {
+        throw error;
+      } else {
+        res.send(results);
+      }
     }
-  });
+  );
 });
 
 app.put("/api/alumnos/:id", (req, res) => {
@@ -233,21 +254,24 @@ app.put("/api/alumnos/:id", (req, res) => {
   let estatus = req.body.est;
   let sql =
     "UPDATE alumnos SET nombre = ?, carrera =?, estatus=? WHERE ncontrol=?";
-  conexion.query(sql, [nombre, carrera, estatus, ncontrol], (error, results) => {
-    if (error) {
-      throw error;
-    } else {
-      res.send(results);
+  conexion.query(
+    sql,
+    [nombre, carrera, estatus, ncontrol],
+    (error, results) => {
+      if (error) {
+        throw error;
+      } else {
+        res.send(results);
+      }
     }
-  });
+  );
 });
 
 app.put("/api/materias/:id", (req, res) => {
   let clavemateria = req.params.id;
   let nombre = req.body.nom;
   let creditos = req.body.cre;
-  let sql =
-    "UPDATE materia SET nombre = ?, creditos =? WHERE clavemateria=?";
+  let sql = "UPDATE materia SET nombre = ?, creditos =? WHERE clavemateria=?";
   conexion.query(sql, [nombre, creditos, clavemateria], (error, results) => {
     if (error) {
       throw error;
@@ -262,60 +286,91 @@ app.put("/api/grupos/:id", (req, res) => {
   let clavemateria = req.body.claMat;
   let clavemaestro = req.body.claMaes;
   let limitealumnos = req.body.lim;
-  let  inscritos = req.body.ins;
-  let  horariolunes = req.body.horL;
-  let  horariomartes = req.body.horM;
-  let  horariomiercoles = req.body.horMi;
-  let  horariojueves = req.body.horJ;
-  let  horarioviernes = req.body.horV;
+  let inscritos = req.body.ins;
+  let horariolunes = req.body.horL;
+  let horariomartes = req.body.horM;
+  let horariomiercoles = req.body.horMi;
+  let horariojueves = req.body.horJ;
+  let horarioviernes = req.body.horV;
   let sql =
     "UPDATE grupos SET clavemateria = ?, clavemaestro =?, limitealumnos =?, inscritos =?, horariolunes =?, horariomartes =?, horariomiercoles =?, horariojueves =?, horarioviernes =? WHERE clavegrupo=?";
-  conexion.query(sql, [clavemateria, clavemaestro, limitealumnos, inscritos, horariolunes, horariomartes, horariomiercoles, horariojueves, horarioviernes, clavegrupo], (error, results) => {
-    if (error) {
-      throw error;
-    } else {
-      res.send(results);
+  conexion.query(
+    sql,
+    [
+      clavemateria,
+      clavemaestro,
+      limitealumnos,
+      inscritos,
+      horariolunes,
+      horariomartes,
+      horariomiercoles,
+      horariojueves,
+      horarioviernes,
+      clavegrupo,
+    ],
+    (error, results) => {
+      if (error) {
+        throw error;
+      } else {
+        res.send(results);
+      }
     }
-  });
+  );
 });
 
 //Delete
-app.delete('/api/maestros/:id', (req, res)=>{
-  conexion.query("DELETE FROM maestros WHERE clavemaestro=?", [req.params.id], function(error, filas){
-    if(error){
-      throw error;
-    }else{
-      res.send(filas);
+app.delete("/api/maestros/:id", (req, res) => {
+  conexion.query(
+    "DELETE FROM maestros WHERE clavemaestro=?",
+    [req.params.id],
+    function (error, filas) {
+      if (error) {
+        throw error;
+      } else {
+        res.send(filas);
+      }
     }
-  })
+  );
 });
 
-app.delete('/api/alumnos/:id', (req, res)=>{
-  conexion.query("DELETE FROM alumnos WHERE ncontrol=?", [req.params.id], function(error, filas){
-    if(error){
-      throw error;
-    }else{
-      res.send(filas);
+app.delete("/api/alumnos/:id", (req, res) => {
+  conexion.query(
+    "DELETE FROM alumnos WHERE ncontrol=?",
+    [req.params.id],
+    function (error, filas) {
+      if (error) {
+        throw error;
+      } else {
+        res.send(filas);
+      }
     }
-  })
+  );
 });
 
-app.delete('/api/materias/:id', (req, res)=>{
-  conexion.query("DELETE FROM materia WHERE clavemateria=?", [req.params.id], function(error, filas){
-    if(error){
-      throw error;
-    }else{
-      res.send(filas);
+app.delete("/api/materias/:id", (req, res) => {
+  conexion.query(
+    "DELETE FROM materia WHERE clavemateria=?",
+    [req.params.id],
+    function (error, filas) {
+      if (error) {
+        throw error;
+      } else {
+        res.send(filas);
+      }
     }
-  })
+  );
 });
 
-app.delete('/api/grupos/:id', (req, res)=>{
-  conexion.query("DELETE FROM grupos WHERE clavegrupo=?", [req.params.id], function(error, filas){
-    if(error){
-      throw error;
-    }else{
-      res.send(filas);
+app.delete("/api/grupos/:id", (req, res) => {
+  conexion.query(
+    "DELETE FROM grupos WHERE clavegrupo=?",
+    [req.params.id],
+    function (error, filas) {
+      if (error) {
+        throw error;
+      } else {
+        res.send(filas);
+      }
     }
-  })
+  );
 });

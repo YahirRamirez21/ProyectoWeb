@@ -67,7 +67,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 section {
   display: flex;
   flex-direction: column;
