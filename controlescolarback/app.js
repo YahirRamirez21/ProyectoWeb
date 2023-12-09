@@ -164,7 +164,7 @@ app.post("/api/materias", (req, res) => {
   let data = {
     clavemateria: req.body.cla,
     nombre: req.body.nom,
-    credito: req.body.cre,
+    creditos: req.body.cre,
   };
   let sql = "INSERT INTO materia SET ?";
   conexion.query(sql, data, (error, results) => {
@@ -178,11 +178,11 @@ app.post("/api/materias", (req, res) => {
 
 app.post("/api/grupos", (req, res) => {
   let data = {
-    clavegrupo: req.body.clg,
     clavemateria: req.body.claMat,
+    clavegrupo: req.body.clg,
     clavemaestro: req.body.claMto,
     limitealumnos: req.body.lim,
-    inscripcion: req.body.ins,
+    inscritos: req.body.ins,
     horariolunes: req.body.horL,
     horariomartes: req.body.horM,
     horariomiercoles: req.body.horMi,
@@ -201,13 +201,13 @@ app.post("/api/grupos", (req, res) => {
 
 //actualizar
 app.put("/api/maestros/:id", (req, res) => {
-  let clave = req.params.id;
+  let clavemaestro = req.params.id;
   let nombre = req.body.nom;
   let departamento = req.body.dep;
   let estatus = req.body.est;
   let sql =
-    "UPDATE maestros SET nombre = ?, departamento =?, estatus=? WHERE clavemaestros=?";
-  conexion.query(sql, [nombre, departamento, estatus, clave], (error, results) => {
+    "UPDATE maestros SET nombre = ?, departamento =?, estatus=? WHERE clavemaestro=?";
+  conexion.query(sql, [nombre, departamento, estatus, clavemaestro], (error, results) => {
     if (error) {
       throw error;
     } else {
@@ -252,15 +252,15 @@ app.put("/api/grupos/:id", (req, res) => {
   let clavemateria = req.body.claMat;
   let clavemaestro = req.body.claMaes;
   let limitealumnos = req.body.lim;
-  let  inscripcion = req.body.ins;
+  let  inscritos = req.body.ins;
   let  horariolunes = req.body.horL;
   let  horariomartes = req.body.horM;
   let  horariomiercoles = req.body.horMi;
   let  horariojueves = req.body.horJ;
   let  horarioviernes = req.body.horV;
   let sql =
-    "UPDATE grupos SET clavemateria = ?, clavemaestro =?, limitealumnos =?, inscripcion =?, horariolunes =?, horariomartes =?, horariomiercoles =?, horariojueves =?, horarioviernes =? WHERE clavegrupo=?";
-  conexion.query(sql, [clavemateria, clavemaestro, limitealumnos, inscripcion, horariolunes, horariomartes, horariomiercoles, horariojueves, horarioviernes, clavegrupo], (error, results) => {
+    "UPDATE grupos SET clavemateria = ?, clavemaestro =?, limitealumnos =?, inscritos =?, horariolunes =?, horariomartes =?, horariomiercoles =?, horariojueves =?, horarioviernes =? WHERE clavegrupo=?";
+  conexion.query(sql, [clavemateria, clavemaestro, limitealumnos, inscritos, horariolunes, horariomartes, horariomiercoles, horariojueves, horarioviernes, clavegrupo], (error, results) => {
     if (error) {
       throw error;
     } else {

@@ -1,6 +1,7 @@
 <template>
     <div class="GruposLista">
-        <button @click.prevent="traerGrupos()">Grupos</button>
+        <!-- <button @click.prevent="traerGrupos()">Grupos</button> -->
+        <button @click.prevent="nuevoGrupo()">Nuevo</button>
         <table>
             <thead>
                 <tr>
@@ -14,6 +15,7 @@
                     <th>Horario Miercoles</th>
                     <th>Horario Jueves</th>
                     <th>Horario viernes</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,6 +30,10 @@
                     <td>{{ grp.horariomiercoles }}</td>
                     <td>{{ grp.horariojueves }}</td>
                     <td>{{ grp.horarioviernes }}</td>
+                    <td>
+                        <button @click.prevent="editarGrupo(grp.clavegrupo)">Editar</button>
+                        <button @click.prevent="eliminarGrupo(grp.clavegrupo)">Eliminar</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -47,6 +53,9 @@
                 grupos: [],
             }
         },
+        created() {
+            this.traerGrupos();
+        },
         methods: {
             traerGrupos: async function(){
                 let g = [];
@@ -58,6 +67,16 @@
                     console.log(error)
                 });
                 this.grupos = g;
+            },
+            editarGrupo: function(clavegrupo) {
+                this.$router.push({name: "editarGrupo", params: {clavegrupo: clavegrupo}});
+            },
+            eliminarGrupo: async function(clavegrupo) {
+                await axios.delete(URL_DATOS+"/grupos/"+clavegrupo); 
+                this.traerGrupos();
+            },
+            nuevoGrupo: function(){
+                this.$router.push({name: "nuevoGrupo", params: {}});
             }
         }
     }

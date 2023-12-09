@@ -1,6 +1,7 @@
 <template>
     <div class="MaestrosLista">
-        <button @click.prevent="traerMaestros()">Maestros</button>
+        <!-- <button @click.prevent="traerMaestros()">Maestros</button> -->
+        <button @click.prevent="nuevoMaestro()">Nuevo</button>
         <table>
             <thead>
                 <tr>
@@ -8,6 +9,7 @@
                     <th>Nombre</th>
                     <th>Departamento</th>
                     <th>Estatus</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -16,6 +18,10 @@
                     <td>{{ maes.nombre }}</td>
                     <td>{{ maes.departamento }}</td>
                     <td>{{ maes.estatus }}</td>
+                    <td>
+                        <button @click.prevent="editarMaestro(maes.clavemaestro)">Editar</button>
+                        <button @click.prevent="eliminarMaestro(maes.clavemaestro)">Eliminar</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -35,6 +41,9 @@
                 maestros: [],
             }
         },
+        created() {
+            this.traerMaestros()
+        },  
         methods: {
             traerMaestros: async function(){
                 let a = [];
@@ -46,6 +55,16 @@
                     console.log(error)
                 });
                 this.maestros = a;
+            },
+            editarMaestro: function(clavemaestro) {
+                this.$router.push({name: "editarMaestro", params: {clavemaestro: clavemaestro}});
+            },
+            eliminarMaestro: async function(clavemaestro) {
+                await axios.delete(URL_DATOS+"/maestros/"+clavemaestro); 
+                this.traerMaestros();
+            },
+            nuevoMaestro: function(){
+                this.$router.push({name: "nuevoMaestro", params: {}});
             }
         }
     }

@@ -1,12 +1,14 @@
 <template>
     <div class="MateriasLista">
-        <button @click.prevent="traerMaterias()">Materias</button>
+        <!-- <button @click.prevent="traerMaterias()">Materias</button> -->
+        <button @click.prevent="nuevoMateria()">Nueva</button>
         <table>
             <thead>
                 <tr>
                     <th>Clave Materia</th>
                     <th>Nombre</th>
                     <th>Creditos</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -14,6 +16,10 @@
                     <td>{{ mat.clavemateria }}</td>
                     <td>{{ mat.nombre }}</td>
                     <td>{{ mat.creditos }}</td>
+                    <td>
+                        <button @click.prevent="editarMateria(mat.clavemateria)">Editar</button>
+                        <button @click.prevent="eliminarMateria(mat.clavemateria)">Eliminar</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -33,6 +39,9 @@
                 materias: [],
             }
         },
+        created() {
+            this.traerMaterias()
+        }, 
         methods: {
             traerMaterias: async function(){
                 let m = [];
@@ -44,6 +53,16 @@
                     console.log(error)
                 });
                 this.materias = m;
+            },
+            editarMateria: function(clavemateria) {
+                this.$router.push({name: "editarMateria", params: {clavemateria: clavemateria}});
+            },
+            eliminarMateria: async function(clavemateria) {
+                await axios.delete(URL_DATOS+"/materias/"+clavemateria); 
+                this.traerMaterias();
+            },
+            nuevoMateria: function(){
+                this.$router.push({name: "nuevaMateria", params: {}});
             }
         }
     }
