@@ -113,6 +113,16 @@ app.get("/api/grupos/:id", function (req, res) {
   });
 });
 
+app.get("/api/gruposcarga", function (req, res) {
+  conexion.query("SELECT g.clavegrupo, ma.clavemateria, ma.nombre, maes.clavemaestro, maes.nombre, g.horariolunes FROM grupos g INNER JOIN materia ma on ma.clavemateria =  g.clavemateria INNER JOIN maestros maes on maes.clavemaestro = g.clavemaestro", (error, filas) => {
+    if (error) {
+      throw error;
+    } else {
+      res.send(filas);
+    }
+  });
+});
+
 app.get("/api/carga", function (req, res) {
   conexion.query("SELECT * FROM carga", (error, filas) => {
     if (error) {
