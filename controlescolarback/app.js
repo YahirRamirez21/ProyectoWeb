@@ -45,6 +45,15 @@ app.get("/api/maestros", function (req, res) {
     }
   });
 });
+app.get("/api/maestros/:id", function (req, res) {
+  conexion.query("SELECT * FROM maestros WHERE clavemaestro = ? LIMIT 1", [req.params.id], (error, filas) => {
+    if (error) {
+      throw error;
+    } else {
+      res.send(filas);
+    }
+  });
+});
 
 app.get("/api/alumnos", function (req, res) {
   conexion.query("SELECT * FROM alumnos", (error, filas) => {
@@ -75,9 +84,27 @@ app.get("/api/materia", function (req, res) {
     }
   });
 });
+app.get("/api/materia/:id", function (req, res) {
+  conexion.query("SELECT * FROM materia WHERE clavemateria = ? LIMIT 1", [req.params.id], (error, filas) => {
+    if (error) {
+      throw error;
+    } else {
+      res.send(filas);
+    }
+  });
+});
 
 app.get("/api/grupos", function (req, res) {
   conexion.query("SELECT * FROM grupos", (error, filas) => {
+    if (error) {
+      throw error;
+    } else {
+      res.send(filas);
+    }
+  });
+});
+app.get("/api/grupos/:id", function (req, res) {
+  conexion.query("SELECT * FROM grupos WHERE clavegrupo = ? LIMIT 1", [req.params.id], (error, filas) => {
     if (error) {
       throw error;
     } else {
@@ -95,6 +122,7 @@ app.get("/api/carga", function (req, res) {
     }
   });
 });
+
 
 //insertar datos
 app.post("/api/maestros", (req, res) => {
