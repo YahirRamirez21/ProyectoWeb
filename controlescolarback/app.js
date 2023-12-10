@@ -226,6 +226,22 @@ app.post("/api/grupos", (req, res) => {
   });
 });
 
+app.post("/api/carga", (req, res) => {
+  let data = {
+    clavemateria: req.body.clam,
+    clavegrupo: req.body.clag,
+    ncontrol: req.body.ncon,
+  };
+  let sql = "INSERT INTO carga SET ?";
+  conexion.query(sql, data, (error, results) => {
+    if (error) {
+      throw error;
+    } else {
+      res.send(results);
+    }
+  });
+});
+
 //actualizar
 app.put("/api/maestros/:id", (req, res) => {
   let clavemaestro = req.params.id;
