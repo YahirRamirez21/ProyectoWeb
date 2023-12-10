@@ -76,7 +76,7 @@ export default {
       let ca = [];
       let numcon = document.getElementById("ncontrol").value;
       if(numcon.length === 0){
-        alert("Ingrese numero de control")
+        alert("Ingrese numero de control");
         return;
       }
       await axios
