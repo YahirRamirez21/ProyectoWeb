@@ -1,47 +1,40 @@
 <template>
   <div class="GruposCargaLista">
-    <label>Busqueda de Carga por alumno</label><br>
+    <label>Busqueda de Carga por alumno</label><br />
     <label for="ncontrol">No.Control</label>
-    <input type="text" name="ncontrol" id="ncontrol">
-    <button @click.prevent="buscarCargaAlumno()">Buscar</button><br>
+    <input type="text" name="ncontrol" id="ncontrol" required />
+    <button id="buscarCargaAlumno" @click.prevent="buscarCargaAlumno()">
+      Buscar</button
+    ><br />
     <div id="contenedor">
       <section class="consulta">
-      <section v-for="itemc in cargaalum" >
-      <article>
-        <p>Clave Grupo: {{ itemc.clavegrupo }}</p>
-        <p>Clave Materia: {{ itemc.clavemateria }}</p>
-        <p>N Control: {{ itemc.ncontrol }}</p>
-      </article>
-    </section>
-    </section>
-    
-    <section class="grupos">
-      <section v-for="item in gruposcarga" >
-      <article>
-        <p>{{ item.clavegrupo }}</p>
-        <p>{{ item.clavemateria }}</p>
-        <p>{{ item.nombremateria }}</p>
-        <p>{{ item.clavemaestro }}</p>
-        <p>{{ item.nombremaestro }}</p>
-        <p>{{ item.horario }}</p>
-        <p>Cupos: {{ item.limite - item.inscritos }}</p>
-        <a class="agg" href="#" @click.prevent="seleccionarGrupo(item)">+</a>
-      </article>
-    </section>
-    </section>
+        <section v-for="itemc in cargaalum">
+          <article>
+            <p>Clave Grupo: {{ itemc.clavegrupo }}</p>
+            <p>Clave Materia: {{ itemc.clavemateria }}</p>
+            <p>N Control: {{ itemc.ncontrol }}</p>
+          </article>
+        </section>
+      </section>
 
-    <section class="carga">
-      <h3>Aqui realizar carga</h3>
-      <label for="ncontrol">Ingresa No. Control</label>
-      <input type="text" name="ncontrol1" id="ncontrol1">
-      <button @click.prevent="guardarCarga()">Guardar Carga</button>
-      
-
-    </section>
+      <section class="grupos">
+        <section v-for="item in gruposcarga">
+          <article>
+            <p>{{ item.clavegrupo }}</p>
+            <p>{{ item.clavemateria }}</p>
+            <p>{{ item.nombremateria }}</p>
+            <p>{{ item.clavemaestro }}</p>
+            <p>{{ item.nombremaestro }}</p>
+            <p>{{ item.horario }}</p>
+            <p id="cupos">cupos:{{ item.limite - item.inscritos }}</p>
+            <a class="agg" href="#" @click.prevent="seleccionarGrupo(item)"
+              >+</a
+            >
+          </article>
+        </section>
+      </section>
     </div>
-    
-    
-    
+    <button @click.prevent="guardarCarga()">Guardar Carga</button>
   </div>
 </template>
 
@@ -58,7 +51,7 @@ export default {
   data: function () {
     return {
       gruposcarga: [],
-      cargaalum:[],
+      cargaalum: [],
     };
   },
   created() {
@@ -82,12 +75,15 @@ export default {
     buscarCargaAlumno: async function () {
       let ca = [];
       let numcon = document.getElementById("ncontrol").value;
+      if(numcon.length === 0){
+        alert("Ingrese numero de control")
+        return;
+      }
       await axios
-        .get(URL_DATOS + "/carga/"+numcon)
+        .get(URL_DATOS + "/carga/" + numcon)
         .then(function (response) {
           console.log("RESPONSE " + response);
           ca = response.data;
-          
         })
         .catch(function (error) {
           console.log(error);
@@ -95,20 +91,28 @@ export default {
         });
       this.cargaalum = ca;
     },
-    seleccionarGrupo: function(grupo){
-
+    seleccionarGrupo: async function (grupos) {
+      //console.log(grupo.clavemateria);
+      let numcon = document.getElementById("ncontrol").value;
+        if((grupos.limite - grupos.inscritos)== 0) {
+        console.log(this.gruposcarga.limite - this.gruposcarga.inscritos);
+        alert('Grupo agotado');
+        return;
+      }
+      const res = await axios.post(URL_DATOS + "/carga", { ncon : numcon, clam: grupos.clavemateria, clag: grupos.clavegrupo });
+      const res2 = await axios.put(URL_DATOS + "/gruposcarga/"+grupos.clavegrupo, {});
+      this.buscarCargaAlumno();
+      this.traerGruposCarga();
     },
-    guardarCarga: async function(){
-      const res = await axios.post(URL_DATOS+"/carga",{
-        
-      })
-    }
+    guardarCarga: async function () {
+      
+    },
   },
 };
 </script>
 
-<style scoped >
-section{
+<style scoped>
+section {
   border: 1px solid red;
 }
 .agg {
@@ -116,10 +120,10 @@ section{
   color: #000;
   font-size: 30px;
 }
-.carga{
+.carga {
   width: 400px;
 }
-.consulta{
+.consulta {
   width: 400px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -133,8 +137,7 @@ section{
   gap: 40px;
   margin-right: 15px;
 }
-#contenedor{
+#contenedor {
   display: flex;
 }
-
 </style>

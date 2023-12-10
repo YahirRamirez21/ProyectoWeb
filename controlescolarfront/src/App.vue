@@ -26,6 +26,7 @@
     .contenedorglobal {
         background-color: lightgray;
         margin-top: -50px;
+        height: 100vh;
     }
 
     div {

@@ -33,8 +33,8 @@
                             <td>{{ grp.horariojueves }}</td>
                             <td>{{ grp.horarioviernes }}</td>
                             <td>
-                                <button @click.prevent="editarGrupo(grp.clavegrupo)">Editar</button>
-                                <button @click.prevent="eliminarGrupo(grp.clavegrupo)">Eliminar</button>
+                                <button class="botonAccion" @click.prevent="editarGrupo(grp.clavegrupo)">Editar</button>
+                                <button class="botonAccion" @click.prevent="eliminarGrupo(grp.clavegrupo)">Eliminar</button>
                             </td>
                         </tr>
                     </tbody>

@@ -19,10 +19,10 @@
               <td>{{ mat.nombre }}</td>
               <td>{{ mat.creditos }}</td>
               <td>
-                <button @click.prevent="editarMateria(mat.clavemateria)">
+                <button class="botonAccion" @click.prevent="editarMateria(mat.clavemateria)">
                   Editar
                 </button>
-                <button @click.prevent="eliminarMateria(mat.clavemateria)">
+                <button class="botonAccion" @click.prevent="eliminarMateria(mat.clavemateria)">
                   Eliminar
                 </button>
               </td>

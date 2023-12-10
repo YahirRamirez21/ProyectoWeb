@@ -21,8 +21,8 @@
                             <td>{{ alu.carrera }}</td>
                             <td>{{ alu.estatus }}</td>
                             <td>
-                                <Button @click.prevent="editarAlumno(alu.ncontrol)">Editar</Button>
-                                <Button @click.prevent="eliminarAlumno(alu.ncontrol)">Eliminar</Button>
+                                <Button class="botonAccion" @click.prevent="editarAlumno(alu.ncontrol)">Editar</Button>
+                                <Button class="botonAccion" @click.prevent="eliminarAlumno(alu.ncontrol)">Eliminar</Button>
                             </td>
                         </tr>
                     </tbody>

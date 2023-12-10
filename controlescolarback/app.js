@@ -242,6 +242,18 @@ app.post("/api/carga", (req, res) => {
   });
 });
 
+app.put("/api/gruposcarga/:id", (req, res) => {
+  let clavegrupo =  req.params.id;
+  let sql = "UPDATE grupos SET inscritos = inscritos + 1 WHERE clavegrupo=?";
+  conexion.query(sql, clavegrupo, (error, results) => {
+    if (error) {
+      throw error;
+    } else {
+      res.send(results);
+    }
+  });
+});
+
 //actualizar
 app.put("/api/maestros/:id", (req, res) => {
   let clavemaestro = req.params.id;
