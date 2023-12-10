@@ -1,13 +1,18 @@
 <template>
     <div id="app">
-        <nav class="nav">
-            <router-link class="enlace" to="/maestros">Maestros</router-link>
-            <router-link class="enlace" to="/alumnos">Alumnos</router-link>
-            <router-link class="enlace" to="/grupos">Grupos</router-link>
-            <router-link class="enlace" to="/materias">Materias</router-link>
-            <router-link class="enlace" to="/carga">Carga</router-link>
-         </nav>
-        <router-view/>
+        <section class="contenedorglobal">
+            <nav class="nav">
+                <article class="navseccion">
+                    <router-link class="enlace" to="/maestros">Maestros</router-link>
+                    <router-link class="enlace" to="/alumnos">Alumnos</router-link>
+                    <router-link class="enlace" to="/grupos">Grupos</router-link>
+                    <router-link class="enlace" to="/materias">Materias</router-link>
+                    <router-link class="enlace" to="/carga">Carga</router-link>
+                </article>
+                
+             </nav>
+            <router-view/>
+        </section>
     </div>
 </template>
 
@@ -16,29 +21,39 @@
         padding: 0;
         margin: 0;
         box-sizing: border-box;
+    }
+
+    .contenedorglobal {
         background-color: lightgray;
+        margin-top: -50px;
     }
 
     div {
-        margin-top: 30px;
+        margin-top: 50px;
         /*height: 50px;*/
     }
 
     .nav {
-        border-radius: 10px;
         width: 500px;
-        margin: 0 auto;
-        background-color: white;
-        padding: 10px;
+        margin: 0px auto;
+        padding: 10px 0px;
+    }
+
+    .navseccion {
+        background-color: #00276c;
+        margin-top: 20px;
         display: flex;
         justify-content: space-around;
         align-items: center;
+        padding: 10px 20px;
+        border-radius: 10px;
     }
 
-    .nav > * {
+
+    .navseccion > * {
         background-color: transparent;
         text-decoration: none;
-        color: black;
+        color: white;
         font-size: 20px;
     }
 

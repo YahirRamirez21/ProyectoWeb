@@ -1,42 +1,46 @@
 <template>
     <div class="GruposLista">
         <!-- <button @click.prevent="traerGrupos()">Grupos</button> -->
-        <button @click.prevent="nuevoGrupo()">Nuevo</button>
-        <table>
-            <thead>
-                <tr>
-                    <th>Clave Grupo</th>
-                    <th>Clave Materia</th>
-                    <th>Clave Maestro</th>
-                    <th>Limite Alumnos</th>
-                    <th>Inscritos</th>
-                    <th>Horario Lunes</th>
-                    <th>Horario Martes</th>
-                    <th>Horario Miercoles</th>
-                    <th>Horario Jueves</th>
-                    <th>Horario viernes</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="grp in grupos" :key="grp.id">
-                    <td>{{ grp.clavegrupo }}</td>
-                    <td>{{ grp.clavemateria }}</td>
-                    <td>{{ grp.clavemaestro }}</td>
-                    <td>{{ grp.limitealumnos }}</td>
-                    <td>{{ grp.inscritos }}</td>
-                    <td>{{ grp.horariolunes }}</td>
-                    <td>{{ grp.horariomartes }}</td>
-                    <td>{{ grp.horariomiercoles }}</td>
-                    <td>{{ grp.horariojueves }}</td>
-                    <td>{{ grp.horarioviernes }}</td>
-                    <td>
-                        <button @click.prevent="editarGrupo(grp.clavegrupo)">Editar</button>
-                        <button @click.prevent="eliminarGrupo(grp.clavegrupo)">Eliminar</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <section class="contenedor">
+            <article class="cajaboton">
+                <button class="botonNuevo" @click.prevent="nuevoGrupo()">Nuevo</button>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Clave Grupo</th>
+                            <th>Clave Materia</th>
+                            <th>Clave Maestro</th>
+                            <th>Limite Alumnos</th>
+                            <th>Inscritos</th>
+                            <th>Horario Lunes</th>
+                            <th>Horario Martes</th>
+                            <th>Horario Miercoles</th>
+                            <th>Horario Jueves</th>
+                            <th>Horario viernes</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="grp in grupos" :key="grp.id">
+                            <td>{{ grp.clavegrupo }}</td>
+                            <td>{{ grp.clavemateria }}</td>
+                            <td>{{ grp.clavemaestro }}</td>
+                            <td>{{ grp.limitealumnos }}</td>
+                            <td>{{ grp.inscritos }}</td>
+                            <td>{{ grp.horariolunes }}</td>
+                            <td>{{ grp.horariomartes }}</td>
+                            <td>{{ grp.horariomiercoles }}</td>
+                            <td>{{ grp.horariojueves }}</td>
+                            <td>{{ grp.horarioviernes }}</td>
+                            <td>
+                                <button @click.prevent="editarGrupo(grp.clavegrupo)">Editar</button>
+                                <button @click.prevent="eliminarGrupo(grp.clavegrupo)">Eliminar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+        </section>
     </div>
 </template>
 

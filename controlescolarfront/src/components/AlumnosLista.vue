@@ -1,30 +1,34 @@
 <template>
     <div class="AlumnosLista">
-        <button @click.prevent="nuevoAlumno()">Nuevo</button>
-        <!-- <button @click.prevent="traerAlumnos()">Alumnos</button> -->
-        <table>
-            <thead>
-                <tr>
-                    <th>No.Control</th>
-                    <th>Nombre</th>
-                    <th>Carrera</th>
-                    <th>Estatus</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="alu in alumnos" :key="alu.ncontrol">
-                    <td>{{ alu.ncontrol }}</td>
-                    <td>{{ alu.nombre }}</td>
-                    <td>{{ alu.carrera }}</td>
-                    <td>{{ alu.estatus }}</td>
-                    <td>
-                        <Button @click.prevent="editarAlumno(alu.ncontrol)">Editar</Button>
-                        <Button @click.prevent="eliminarAlumno(alu.ncontrol)">Eliminar</Button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <section class="contenedor">
+            <article class="cajaboton">
+                <button class="botonNuevo" @click.prevent="nuevoAlumno()">Nuevo</button>
+                <!-- <button @click.prevent="traerAlumnos()">Alumnos</button> -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No.Control</th>
+                            <th>Nombre</th>
+                            <th>Carrera</th>
+                            <th>Estatus</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="alu in alumnos" :key="alu.ncontrol">
+                            <td>{{ alu.ncontrol }}</td>
+                            <td>{{ alu.nombre }}</td>
+                            <td>{{ alu.carrera }}</td>
+                            <td>{{ alu.estatus }}</td>
+                            <td>
+                                <Button @click.prevent="editarAlumno(alu.ncontrol)">Editar</Button>
+                                <Button @click.prevent="eliminarAlumno(alu.ncontrol)">Eliminar</Button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+        </section>
     </div>
 </template>
 

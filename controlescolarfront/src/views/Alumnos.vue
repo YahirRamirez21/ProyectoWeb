@@ -22,5 +22,10 @@
 </script>
 
 <style>
-    
+    h1 {
+        font-size: 40px;
+        font-family: sans-serif;
+        margin-left: 140px;
+        margin-top: -104px;
+    }
 </style>
