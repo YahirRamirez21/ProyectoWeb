@@ -15,6 +15,7 @@ import EditarMateria from '../components/EditarMateria.vue'
 import NuevaMateria from '../components/NuevaMateria.vue'
 
 
+
 Vue.use(VueRouter)
 
 const routes = [

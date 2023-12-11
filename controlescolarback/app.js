@@ -401,4 +401,48 @@ app.delete("/api/grupos/:id", (req, res) => {
       }
     }
   );
+});  
+
+
+//PARA VERIFICAR QUE NO HAYA DATOS LLAVES DUPLICADAS
+app.get("/api/verificarmaestro/:id", function (req, res) {
+  conexion.query("SELECT COUNT(*) as count FROM maestros WHERE clavemaestro = ?", [req.params.id], (error, filas) => {
+    if (error) {
+      throw error;
+    } else {
+      res.send(filas);
+      
+
+    }
+  });
+});
+
+app.get("/api/verificaralumno/:id", function (req, res) {
+  conexion.query("SELECT COUNT(*) as count FROM alumnos WHERE ncontrol = ?", [req.params.id], (error, filas) => {
+    if (error) {
+      throw error;
+    } else {
+      res.send(filas);
+    }
+  });
+});
+
+app.get("/api/verificarmateria/:id", function (req, res) {
+  conexion.query("SELECT COUNT(*) as count FROM materia WHERE clavemateria = ?", [req.params.id], (error, filas) => {
+    if (error) {
+      throw error;
+    } else {
+      res.send(filas);
+    }
+  });
+});
+
+app.get("/api/verificargrupo/:id", function (req, res) {
+  conexion.query("SELECT COUNT(*) as count FROM grupos WHERE clavegrupo = ?", [req.params.id], (error, filas) => {
+    if (error) {
+      throw error;
+    } else {
+      res.send(filas);
+    }
+  });
 });

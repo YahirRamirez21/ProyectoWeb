@@ -1,7 +1,8 @@
 <template>
-    <div class="EditarGrupo">
-      <section>
-        <h2>Datos del Grupo</h2>
+  <div class="EditarGrupo">
+    <section class="contenedor">
+      <h2 class="subtitulo">Datos del Grupo</h2>
+      <article class="clasearticle">
         <br />
         <label for="clavemateria">Clave de la Materia</label> <br />
         <input type="text" name="clavemateria" id="clavemateria" v-model="grupos.clavemateria" />
@@ -30,79 +31,86 @@
         <label for="horarioviernes">Horario Viernes</label> <br />
         <input type="text" name="horarioviernes" id="horarioviernes" v-model="grupos.horarioviernes" />
         <br />
-        <button @click.prevent="actualizarGrupo()">Actualizar Grupo</button>
-      </section>
-    </div>
-  </template>
+      </article>
+      <button @click.prevent="actualizarGrupo()" class="botonesacciones">Actualizar Grupo</button>
+    </section>
+  </div>
+</template>
   
-  <script>
-  import { URL_DATOS } from "../utils/constantes";
-  import axios from "axios";
-  
-  export default {
-    name: "EditarGrupo",
-    components: {},
-    props: {
-      clavegrupo: Number,
-    },
-    data: function () {
-      return {
-        grupos: [],
-      };
-    },
-    created() {
-      this.traerDetalle();
-    },
-    methods: {
-      traerDetalle: async function () {
-        let g = [];
-        await axios
-          .get(URL_DATOS + "/grupos/" + this.clavegrupo)
-          .then(function (response) {
-            //console.log(response.data[0])
-            g = response.data[0];
-          })
-          .catch(function (error) {
-            console.log(error);
-            //console.log(alumnos)
-          });
-        this.grupos = g;
-      },
-       actualizarGrupo: async function () {
-          const res = await axios.put(URL_DATOS + "/grupos/" + this.clavegrupo, {
-          // id: this.alumnos.ncontrol,
-          claMat: this.grupos.clavemateria,
-          claMaes: this.grupos.clavemaestro,
-          lim: this.grupos.limitealumnos,
-          ins: this.grupos.inscritos,
-          horL: this.grupos.horariolunes,
-          horM: this.grupos.horariomartes,
-          horMi: this.grupos.horariomiercoles,
-          horJ: this.grupos.horariojueves,
-          horV: this.grupos.horarioviernes,
+<script>
+import { URL_DATOS } from "../utils/constantes";
+import axios from "axios";
+
+export default {
+  name: "EditarGrupo",
+  components: {},
+  props: {
+    clavegrupo: Number,
+  },
+  data: function () {
+    return {
+      grupos: [],
+    };
+  },
+  created() {
+    this.traerDetalle();
+  },
+  methods: {
+    traerDetalle: async function () {
+      let g = [];
+      await axios
+        .get(URL_DATOS + "/grupos/" + this.clavegrupo)
+        .then(function (response) {
+          //console.log(response.data[0])
+          g = response.data[0];
+        })
+        .catch(function (error) {
+          console.log(error);
+          //console.log(alumnos)
         });
-        console.log(res);
-      },
+      this.grupos = g;
     },
-  };
-  </script>
+    actualizarGrupo: async function () {
+      let valorLimite = document.getElementById("limitealumnos").value;
+      let valorInscritos = document.getElementById("inscritos").value;
+      if ( valorLimite == 0 || valorInscritos == 0) {
+        alert("Complete los Campos")
+        return;
+      }
+      const res = await axios.put(URL_DATOS + "/grupos/" + this.clavegrupo, {
+        // id: this.alumnos.ncontrol,
+        claMat: this.grupos.clavemateria,
+        claMaes: this.grupos.clavemaestro,
+        lim: this.grupos.limitealumnos,
+        ins: this.grupos.inscritos,
+        horL: this.grupos.horariolunes,
+        horM: this.grupos.horariomartes,
+        horMi: this.grupos.horariomiercoles,
+        horJ: this.grupos.horariojueves,
+        horV: this.grupos.horarioviernes,
+      });
+      console.log(res);
+    },
+  },
+};
+</script>
   
-  <style scoped>
-  section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  input {
-    width: 300px;
-    padding: 10px 20px;
-    border-radius: 10px;
-    text-align: center;
-    outline: none;
-    border: 1px solid black;
-  }
-  
-  </style>
+<style scoped>
+/*
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  width: 300px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-align: center;
+  outline: none;
+  border: 1px solid black;
+}*/
+</style>
   

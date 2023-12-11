@@ -20,11 +20,11 @@
     * {
         padding: 0;
         margin: 0;
-        box-sizing: border-box;
+        box-sizing: border-box; 
     }
 
     .contenedorglobal {
-        background-color: lightgray;
+        background-color: #adcdea;
         margin-top: -50px;
         height: 100vh;
     }
@@ -57,5 +57,57 @@
         color: white;
         font-size: 20px;
     }
+
+/*AQUI AGREGE PARA LAS VENTANAS DE NUEVO Y EDITAR */
+ .botonesacciones{
+  margin: 10px auto;
+  background-color: #00276c;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 20px;
+  outline: none;
+  padding: 10px 50px;
+}
+.clasearticle {
+  background-color: #014ba0;
+  border-radius: 5px;
+  font-size: 20px;
+  margin: 0px auto;
+  text-align: center;
+  width: 500px;
+}
+.clasearticle input {
+  background: #afcdea;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  height: 30px;
+  text-align: center;
+  width: 90%;
+}
+.clasearticle label{
+    color: white;
+}
+.claseselect {
+  background: #96b3ff;
+  margin: 10px 0px 10px 0px;
+  width: 100px;
+}
+.contenedor {
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100vh;
+  margin: 0 auto;
+  width: 95%;
+}
+.subtitulo{
+  margin: 0px auto;
+  margin-top: 70px;
+}
 
 </style>
