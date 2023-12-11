@@ -25,7 +25,7 @@ export default {
   props: {
     clavemateria: Number,
   },
-  data: function () {
+  data: function () { 
     return {
       materias: [],
     };

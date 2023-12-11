@@ -1,8 +1,6 @@
 <template>
     <div>
         <h1>Carga</h1>
-        
-        
         <section class="seccion">
             <GruposCargaLista ></GruposCargaLista>
         </section>
@@ -23,6 +21,6 @@
     }
 </script>
 
-<style scoped>
+<style>
     
 </style>

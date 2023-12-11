@@ -1,15 +1,26 @@
 <template>
   <div class="GruposCargaLista">
-    <label>Busqueda de Carga por alumno</label><br />
-    <label for="ncontrol">No.Control</label>
-    <input type="text" name="ncontrol" id="ncontrol" required />
-    <button id="buscarCargaAlumno" @click.prevent="buscarCargaAlumno()">
-      Buscar</button
-    ><br />
+    <section class="buscar">
+      <!-- <label>Busqueda de Carga por alumno</label><br /> -->
+      <article class="buscar__article">
+        <label for="ncontrol">No.Control</label>
+        <article class="articleBuscar">
+          <input type="text" name="ncontrol" id="ncontrol" required />
+          <button id="buscarCargaAlumno" @click.prevent="buscarCargaAlumno()">
+            Buscar</button
+          ><br />
+        </article>
+      </article>
+    </section>
+    <section class="encabezados">
+      <h2>Grupos Cargados por el alumno</h2>
+      <h2 class="heading">Grupos disponibles</h2>
+    </section>
     <div id="contenedor">
+      
       <section class="consulta">
         <section v-for="itemc in cargaalum">
-          <article>
+          <article class="card">
             <p>Clave Grupo: {{ itemc.clavegrupo }}</p>
             <p>Clave Materia: {{ itemc.clavemateria }}</p>
             <p>N Control: {{ itemc.ncontrol }}</p>
@@ -19,7 +30,7 @@
 
       <section class="grupos">
         <section v-for="item in gruposcarga">
-          <article>
+          <article class="card">
             <p>{{ item.clavegrupo }}</p>
             <p>{{ item.clavemateria }}</p>
             <p>{{ item.nombremateria }}</p>
@@ -34,7 +45,6 @@
         </section>
       </section>
     </div>
-    <button @click.prevent="guardarCarga()">Guardar Carga</button>
   </div>
 </template>
 
@@ -75,7 +85,7 @@ export default {
     buscarCargaAlumno: async function () {
       let ca = [];
       let numcon = document.getElementById("ncontrol").value;
-      if(numcon.length === 0){
+      if (numcon.length === 0) {
         alert("Ingrese numero de control");
         return;
       }
@@ -94,27 +104,45 @@ export default {
     seleccionarGrupo: async function (grupos) {
       //console.log(grupo.clavemateria);
       let numcon = document.getElementById("ncontrol").value;
-        if((grupos.limite - grupos.inscritos)== 0) {
+      if (grupos.limite - grupos.inscritos == 0) {
         console.log(this.gruposcarga.limite - this.gruposcarga.inscritos);
-        alert('Grupo agotado');
+        alert("Grupo agotado");
         return;
       }
-      const res = await axios.post(URL_DATOS + "/carga", { ncon : numcon, clam: grupos.clavemateria, clag: grupos.clavegrupo });
-      const res2 = await axios.put(URL_DATOS + "/gruposcarga/"+grupos.clavegrupo, {});
+      const res = await axios.post(URL_DATOS + "/carga", {
+        ncon: numcon,
+        clam: grupos.clavemateria,
+        clag: grupos.clavegrupo,
+      });
+      const res2 = await axios.put(
+        URL_DATOS + "/gruposcarga/" + grupos.clavegrupo,
+        {}
+      );
       this.buscarCargaAlumno();
       this.traerGruposCarga();
     },
-    guardarCarga: async function () {
-      
-    },
+    guardarCarga: async function () {},
   },
 };
 </script>
 
 <style scoped>
-section {
-  border: 1px solid red;
+* {
+  font-family: sans-serif;
 }
+
+.encabezados {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  gap: 230px;
+  margin-bottom: 10px;
+}
+
+.heading {
+  margin-right: -300px;
+}
+
 .agg {
   text-decoration: none;
   color: #000;
@@ -124,20 +152,91 @@ section {
   width: 400px;
 }
 .consulta {
-  width: 400px;
+  width: 500px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
+  gap: 20px;
   margin-right: 15px;
+  margin-top: 30px;
+  height: 90%;
+  border-radius: 10px;
+  background-color: #adcdea;
+  padding: 10px;
 }
 .grupos {
-  width: 400px;
+  width: 500px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
+  gap: 20px;
   margin-right: 15px;
+  margin-top: 30px;
+  background-color: #adcdea;
+  height: 90%;
+  border-radius: 10px;
+  padding: 10px;
 }
 #contenedor {
   display: flex;
+  justify-content: center;
+  gap: 30px;
+  width: 95%;
+  border-radius: 10px;
+  margin: 0 auto;
+  background-color: #fff;
+  height: 700px;
 }
+
+.buscar {
+  width: 95%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.buscar__article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 20px;
+}
+.buscar__article label{
+  margin-bottom: 10px;
+  margin-right: 20px;
+  font-size: 20px;
+}
+
+.buscar__article input{
+  padding: 5px 15px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid black;
+  margin-right: 10px;
+  font-size: 20px;
+}
+.buscar__article button {
+  border: none;
+  border-radius: 5px;
+  background-color: #014ba0;
+  font-size: 20px;
+  color: #fff;
+  padding: 5px 15px;
+}
+
+.buscar__article button:hover {
+  cursor: pointer;
+  background-color: rgb(1, 75, 160, .8);
+}
+.articleBuscar {
+  display: flex;
+}
+
+.card {
+  background-color: white;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+
 </style>

@@ -113,7 +113,7 @@
     }
 
     table {
-        width: 90%;
+        width: 95%;
         margin: 0 auto;
         border-radius: 10px;
         padding: 10px;
@@ -136,6 +136,7 @@
     th, td {
         text-align: center;
         padding: 20px;
+        color: white;
     }
 
     tr:nth-child(even) {
