@@ -13,13 +13,18 @@ import EditarGrupo from '../components/EditarGrupo.vue'
 import NuevoGrupo from '../components/NuevoGrupo.vue'
 import EditarMateria from '../components/EditarMateria.vue'
 import NuevaMateria from '../components/NuevaMateria.vue'
+import Principal from '../views/Principal.vue'
 
 
 
 Vue.use(VueRouter)
 
 const routes = [
-  
+  {
+    path: '/principal',
+    name: 'principal',
+    component: Principal
+  },
   {
     path: '/maestros',
     name: 'maestros',

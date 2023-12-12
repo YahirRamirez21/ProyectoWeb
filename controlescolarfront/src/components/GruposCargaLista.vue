@@ -1,13 +1,23 @@
 <template>
   <div class="GruposCargaLista">
-    <a class="back" href="http://localhost:8080"><svg xmlns="http://www.w3.org/2000/svg"
-        class="icon icon-tabler icon-tabler-arrow-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-        stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <a class="back" href="http://localhost:8080/Principal"
+      ><svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon icon-tabler icon-tabler-arrow-left"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+        stroke="currentColor"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
         <path d="M5 12l14 0" />
         <path d="M5 12l6 6" />
-        <path d="M5 12l6 -6" />
-      </svg></a>
+        <path d="M5 12l6 -6" /></svg
+    ></a>
     <section class="buscar">
       <!-- <label>Busqueda de Carga por alumno</label><br /> -->
       <article class="buscar__article">
@@ -15,7 +25,8 @@
         <article class="articleBuscar">
           <input type="text" name="ncontrol" id="ncontrol" required />
           <button id="buscarCargaAlumno" @click.prevent="buscarCargaAlumno()">
-            Buscar</button><br />
+            Buscar</button
+          ><br />
         </article>
       </article>
     </section>
@@ -24,7 +35,6 @@
       <h2 class="heading">Grupos disponibles</h2>
     </section>
     <div id="contenedor">
-
       <section class="consulta">
         <section v-for="itemc in cargaalum">
           <article class="card">
@@ -45,7 +55,10 @@
             <p>{{ item.nombremaestro }}</p>
             <p>{{ item.horario }}</p>
             <p id="cupos">cupos:{{ item.limite - item.inscritos }}</p>
-            <a class="agg" href="#" @click.prevent="seleccionarGrupo(item)">+</a>
+            <a class="agg" href="#" @click.prevent="seleccionarGrupo(item)"
+              >+</a
+            >
+            <p id="lleno"></p>
           </article>
         </section>
       </section>
@@ -76,16 +89,19 @@ export default {
     };
   },
   created() {
+    
     this.traerGruposCarga();
     //this.buscarCargaAlumno();
   },
   methods: {
     traerGruposCarga: async function () {
+      
       let gc = [];
       await axios
         .get(URL_DATOS + "/carga")
         .then(function (response) {
           gc = response.data;
+
           console.log(response);
         })
         .catch(function (error) {
@@ -120,7 +136,7 @@ export default {
       let quitar = document.getElementById("quitar");
       let contenedor = document.getElementById("contenedorAlerta");
 
-      quitar.addEventListener('click', function () {
+      quitar.addEventListener("click", function () {
         alerta.classList.remove("alerta");
         alerta.classList.add("alertaQuitar");
       });
@@ -135,6 +151,7 @@ export default {
         alert("Grupo agotado");
         return;
       }
+      
       const res = await axios.post(URL_DATOS + "/carga", {
         ncon: numcon,
         clam: grupos.clavemateria,
@@ -144,10 +161,11 @@ export default {
         URL_DATOS + "/gruposcarga/" + grupos.clavegrupo,
         {}
       );
+      
       this.buscarCargaAlumno();
       this.traerGruposCarga();
     },
-    guardarCarga: async function () { },
+    guardarCarga: async function () {},
   },
 };
 </script>
@@ -172,7 +190,7 @@ export default {
   left: 39%;
   height: 200px;
   width: 400px;
-  transition: all .5s;
+  transition: all 0.5s;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -295,7 +313,7 @@ export default {
 
 .buscar__article button:hover {
   cursor: pointer;
-  background-color: rgb(1, 75, 160, .8);
+  background-color: rgb(1, 75, 160, 0.8);
 }
 
 .articleBuscar {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Grupos</h1>
-    <a class="back" href="http://localhost:8080"
+    <a class="back" href="http://localhost:8080/Principal"
       ><svg
         xmlns="http://www.w3.org/2000/svg"
         class="icon icon-tabler icon-tabler-arrow-left"

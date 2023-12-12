@@ -1,91 +1,130 @@
 <template>
-    <div id="app">
-        <section class="contenedorglobal">
-            <nav class="nav">
-                <article class="navseccion">
-                    <router-link class="enlace" to="/maestros">Maestros</router-link>
-                    <router-link class="enlace" to="/alumnos">Alumnos</router-link>
-                    <router-link class="enlace" to="/grupos">Grupos</router-link>
-                    <router-link class="enlace" to="/materias">Materias</router-link>
-                    <router-link class="enlace" to="/carga">Carga</router-link>
-                </article>
-
-            </nav>
-            <router-view />
-            <section class="contenedor" id="contInicio">
-                <section id="contenedorflex">
-                    <img src="../src/assets/panelcontrol.png" alt="Panel Control Alumnos" id="imagenPanelControl">
-                    <article class="seccion_article01">
-                        SISTEMA DE CONTROL ESCOLAR
-                    </article>
-                    
-                </section>
-                <article class="cont_article01">
-                        ¡Bienvenidos!
-                </article>
-                <img src="../src/assets/menos.png" alt="Linea" id="lineaabajo">
-
-            </section>
-        </section>
-        <footer>
-            &copy; 2023 Jesus Yahir Ramirez Sanchez <br/>
-            Ximena Guadalupe Lopez Hernandez
-        </footer>
-    </div>
+  <div id="app">
+    <section class="contenedorglobal">
+      <nav class="nav">
+        <article class="navseccion">
+          <router-link class="enlace" to="/Principal">Principal</router-link>
+          <router-link class="enlace" to="/maestros">Maestros</router-link>
+          <router-link class="enlace" to="/alumnos">Alumnos</router-link>
+          <router-link class="enlace" to="/grupos">Grupos</router-link>
+          <router-link class="enlace" to="/materias">Materias</router-link>
+          <router-link class="enlace" to="/carga">Carga</router-link>
+        </article>
+      </nav>
+      <router-view />
+    </section>
+    
+  </div>
 </template>
 
-<style scoped>
-
-/**PANTALLA DE INICIO */
-footer{
-    margin-top: -500px;
-    margin-right: 43px;
-    text-align: right;
-    color: #00276c;
-}
-.seccion_article01 {
-    background: #00276c;
-    border-radius: 10px;
-    color: white;
-    width: 100%;
-    height: 96%;
-    text-align: center;
-    font-size: 70px;
-    font-family: Georgia;
-    font-weight: bold;
-    padding-top: 40px ;
-    
+<style>
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.cont_article01 {
-    color: #014ba0;/**014ba0 */
-    margin: 0px auto;
-    margin-top: 80px;
-    font-size: 70px;
-    font-weight: bold;
+.contenedorglobal {
+  background-color: #adcdea;
+  margin-top: -50px;
+  height: 1400px;
 }
 
-#contInicio{
-    margin-top: 48px;
+div {
+  margin-top: 50px;
+  /*height: 50px;*/
 }
 
-#contenedorflex{
-    display: flex;
-    align-items: center;
-    margin-top: 100px;
-    margin-left: 120px;
-    margin-right:120px ;
-    height: 50%;
-}
-#imagenPanelControl {
-    width: 400px;
-    margin-right: 50px;
-}
-#lineaabajo{
-    width: 150px;
-    margin: 0px auto;
-    margin-top: -55px;
-
+.nav {
+  width: 600px;
+  margin: 0px auto;
+  padding: 10px 0px;
 }
 
+.navseccion {
+  background-color: #00276c;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.navseccion > * {
+  background-color: transparent;
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+}
+
+/** */
+/*AQUI AGREGE PARA LAS VENTANAS DE NUEVO Y EDITAR */
+.botonesacciones {
+  margin: 10px auto;
+  background-color: #00276c;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 20px;
+  outline: none;
+  padding: 10px 50px;
+}
+
+.botonesacciones:hover {
+  background-color: rgb(0, 39, 108, 0.8);
+  cursor: pointer;
+}
+
+.clasearticle {
+  background-color: #014ba0;
+  border-radius: 5px;
+  font-size: 20px;
+  margin: 0px auto;
+  text-align: center;
+  width: 500px;
+  padding-bottom: 30px;
+}
+
+.clasearticle input {
+  background: #afcdea;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  height: 30px;
+  text-align: center;
+  width: 90%;
+}
+
+.clasearticle label {
+  color: white;
+  font-family: sans-serif;
+}
+
+.claseselect {
+  background: #afcdea;
+  margin: 10px 0px 10px 0px;
+  width: 100px;
+}
+
+.contenedor {
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100vh;
+  margin: 0 auto;
+  width: 95%;
+  height: 120vh;
+}
+
+.subtitulo {
+  margin: 0px auto;
+  margin-top: 50px;
+  font-family: sans-serif;
+}
 </style>
+
+

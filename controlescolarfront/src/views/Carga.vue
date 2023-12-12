@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="cargaVista">
         <h1>Carga</h1>
         <section class="seccion">
             <GruposCargaLista ></GruposCargaLista>
@@ -20,7 +20,3 @@
         methods: {}
     }
 </script>
-
-<style>
-    
-</style>
