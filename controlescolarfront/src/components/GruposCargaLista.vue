@@ -1,23 +1,13 @@
 <template>
   <div class="GruposCargaLista">
-    <a class="back" href="http://localhost:8080"
-      ><svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="icon icon-tabler icon-tabler-arrow-left"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        stroke-width="2"
-        stroke="currentColor"
-        fill="none"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
+    <a class="back" href="http://localhost:8080"><svg xmlns="http://www.w3.org/2000/svg"
+        class="icon icon-tabler icon-tabler-arrow-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+        stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
         <path d="M5 12l14 0" />
         <path d="M5 12l6 6" />
-        <path d="M5 12l6 -6" /></svg
-    ></a>
+        <path d="M5 12l6 -6" />
+      </svg></a>
     <section class="buscar">
       <!-- <label>Busqueda de Carga por alumno</label><br /> -->
       <article class="buscar__article">
@@ -25,8 +15,7 @@
         <article class="articleBuscar">
           <input type="text" name="ncontrol" id="ncontrol" required />
           <button id="buscarCargaAlumno" @click.prevent="buscarCargaAlumno()">
-            Buscar</button
-          ><br />
+            Buscar</button><br />
         </article>
       </article>
     </section>
@@ -35,7 +24,7 @@
       <h2 class="heading">Grupos disponibles</h2>
     </section>
     <div id="contenedor">
-      
+
       <section class="consulta">
         <section v-for="itemc in cargaalum">
           <article class="card">
@@ -56,9 +45,7 @@
             <p>{{ item.nombremaestro }}</p>
             <p>{{ item.horario }}</p>
             <p id="cupos">cupos:{{ item.limite - item.inscritos }}</p>
-            <a class="agg" href="#" @click.prevent="seleccionarGrupo(item)"
-              >+</a
-            >
+            <a class="agg" href="#" @click.prevent="seleccionarGrupo(item)">+</a>
           </article>
         </section>
       </section>
@@ -130,7 +117,7 @@ export default {
       let mensaje = document.getElementById("alertaMensaje");
       let quitar = document.getElementById("quitar");
 
-      quitar.addEventListener('click', function() {
+      quitar.addEventListener('click', function () {
         alerta.classList.remove("alerta");
         alerta.classList.add("alertaQuitar");
       });
@@ -156,7 +143,7 @@ export default {
       this.buscarCargaAlumno();
       this.traerGruposCarga();
     },
-    guardarCarga: async function () {},
+    guardarCarga: async function () { },
   },
 };
 </script>
@@ -212,9 +199,11 @@ export default {
   color: #000;
   font-size: 30px;
 }
+
 .carga {
   width: 400px;
 }
+
 .consulta {
   width: 500px;
   display: grid;
@@ -240,6 +229,7 @@ export default {
   border-radius: 10px;
   padding: 10px;
 }
+
 #contenedor {
   display: flex;
   justify-content: center;
@@ -263,13 +253,14 @@ export default {
   justify-content: center;
   margin-top: 20px;
 }
-.buscar__article label{
+
+.buscar__article label {
   margin-bottom: 10px;
   margin-right: 20px;
   font-size: 20px;
 }
 
-.buscar__article input{
+.buscar__article input {
   padding: 5px 15px;
   border-radius: 5px;
   outline: none;
@@ -278,6 +269,7 @@ export default {
   margin-right: 10px;
   font-size: 20px;
 }
+
 .buscar__article button {
   border: none;
   border-radius: 5px;
@@ -291,6 +283,7 @@ export default {
   cursor: pointer;
   background-color: rgb(1, 75, 160, .8);
 }
+
 .articleBuscar {
   display: flex;
 }
@@ -302,6 +295,4 @@ export default {
   border-radius: 5px;
   padding: 5px;
 }
-
-
 </style>
