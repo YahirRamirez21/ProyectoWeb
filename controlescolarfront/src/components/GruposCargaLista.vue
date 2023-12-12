@@ -50,10 +50,12 @@
         </section>
       </section>
     </div>
-    <article id="alerta">
-      <span id="alertaMensaje"></span>
-      <a id="quitar" href="#" class="quitar"></a>
-    </article>
+    <section id="contenedorAlerta">
+      <article id="alerta">
+        <span id="alertaMensaje"></span>
+        <a id="quitar" href="#" class="quitar"></a>
+      </article>
+    </section>
   </div>
 </template>
 
@@ -116,6 +118,7 @@ export default {
       let alerta = document.getElementById("alerta");
       let mensaje = document.getElementById("alertaMensaje");
       let quitar = document.getElementById("quitar");
+      let contenedor = document.getElementById("contenedorAlerta");
 
       quitar.addEventListener('click', function () {
         alerta.classList.remove("alerta");
@@ -128,6 +131,7 @@ export default {
         quitar.textContent = "X";
         alerta.classList.remove("alertaQuitar");
         alerta.classList.add("alerta");
+        contenedor.classList.add("contenedorAlerta");
         alert("Grupo agotado");
         return;
       }
@@ -153,19 +157,29 @@ export default {
   font-family: sans-serif;
 }
 
+.contenedorAlerta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .alerta {
   background: white;
   color: #000;
   position: fixed;
-  top: 0;
-  left: 0;
-  height: 400px;
-  width: 500px;
+  top: 35%;
+  left: 39%;
+  height: 200px;
+  width: 400px;
   transition: all .5s;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
+  border-radius: 10px;
+  border: 1px solid black;
+  font-size: 20px;
 }
 
 .alertaQuitar {
@@ -179,7 +193,7 @@ export default {
   right: 0;
   top: 0;
   padding: 30px;
-  font-size: 30px;
+  font-size: 20px;
 }
 
 .encabezados {
