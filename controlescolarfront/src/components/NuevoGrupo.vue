@@ -5,38 +5,90 @@
       <article class="clasearticle">
         <br />
         <label for="clavegrupo">Clave del Grupo</label> <br />
-        <input type="text" name="clavegrupo" id="clavegrupo" v-model="grupos.clavegrupo" />
+        <input
+          type="text"
+          name="clavegrupo"
+          id="clavegrupo"
+          v-model="grupos.clavegrupo"
+        />
         <br />
         <label for="clavemateria">Clave de la Materia</label> <br />
-        <input type="text" name="clavemateria" id="clavemateria" v-model="grupos.clavemateria" />
+        <input
+          type="text"
+          name="clavemateria"
+          id="clavemateria"
+          v-model="grupos.clavemateria"
+        />
         <br />
         <label for="clavemaestro">Clave del Maestro</label> <br />
-        <input type="text" name="clavemaestro" id="clavemaestro" v-model="grupos.clavemaestro" />
+        <input
+          type="text"
+          name="clavemaestro"
+          id="clavemaestro"
+          v-model="grupos.clavemaestro"
+        />
         <br />
         <label for="limitealumnos">Limite de Alumnos</label> <br />
-        <input type="text" name="limitealumnos" id="limitealumnos" v-model="grupos.limitealumnos" />
+        <input
+          type="text"
+          name="limitealumnos"
+          id="limitealumnos"
+          v-model="grupos.limitealumnos"
+        />
         <br />
         <label for="inscritos">Inscritos</label> <br />
-        <input type="text" name="inscritos" id="inscritos" v-model="grupos.inscritos" />
+        <input
+          type="text"
+          name="inscritos"
+          id="inscritos"
+          v-model="grupos.inscritos"
+        />
         <br />
         <label for="horariolunes">Horario Lunes</label> <br />
-        <input type="text" name="horariolunes" id="horariolunes" v-model="grupos.horariolunes" />
+        <input
+          type="text"
+          name="horariolunes"
+          id="horariolunes"
+          v-model="grupos.horariolunes"
+        />
         <br />
         <label for="horariomartes">Horario Martes</label> <br />
-        <input type="text" name="horariomartes" id="horariomartes" v-model="grupos.horariomartes" />
+        <input
+          type="text"
+          name="horariomartes"
+          id="horariomartes"
+          v-model="grupos.horariomartes"
+        />
         <br />
         <label for="horariomiercoles">Horario Miercoles</label> <br />
-        <input type="text" name="horariomiercoles" id="horariomiercoles" v-model="grupos.horariomiercoles" />
+        <input
+          type="text"
+          name="horariomiercoles"
+          id="horariomiercoles"
+          v-model="grupos.horariomiercoles"
+        />
         <br />
         <label for="horariojueves">Horario Jueves</label> <br />
-        <input type="text" name="horariojueves" id="horariojueves" v-model="grupos.horariojueves" />
+        <input
+          type="text"
+          name="horariojueves"
+          id="horariojueves"
+          v-model="grupos.horariojueves"
+        />
         <br />
         <label for="horarioviernes">Horario Viernes</label> <br />
-        <input type="text" name="horarioviernes" id="horarioviernes" v-model="grupos.horarioviernes" />
+        <input
+          type="text"
+          name="horarioviernes"
+          id="horarioviernes"
+          v-model="grupos.horarioviernes"
+        />
         <br />
       </article>
 
-      <button @click.prevent="nuevoGrupo()" class="botonesacciones">Nuevo Grupo</button>
+      <button @click.prevent="nuevoGrupo()" class="botonesacciones">
+        Nuevo Grupo
+      </button>
     </section>
   </div>
 </template>
@@ -55,10 +107,18 @@ export default {
   methods: {
     nuevoGrupo: async function () {
       let valorClave = document.getElementById("clavegrupo").value;
-      let valorLimite = document.getElementById("limite").value;
+      let valorClaveM = document.getElementById("clavemateria").value;
+      let valorClaveMaestro = document.getElementById("clavemaestro").value;
+      let valorLimite= document.getElementById("limitealumnos").value;
       let valorInscritos = document.getElementById("inscritos").value;
-      if (valorClave == 0 || valorLimite == 0 || valorInscritos == 0) {
-        alert("Complete los Campos")
+      let valorHorarioLunes = document.getElementById("horariolunes").value;
+      let valorHorarioMartes = document.getElementById("horariomartes").value;
+      let valorHorarioMiercoles = document.getElementById("horariomiercoles").value;
+      let valorHorarioJueves = document.getElementById("horariojueves").value;
+      let valorHorarioViernes = document.getElementById("horarioviernes").value;
+
+      if (valorClave == 0 || valorLimite == 0 || valorInscritos == 0 || valorClaveM == 0 || valorClaveMaestro == 0 || valorHorarioLunes == 0 || valorHorarioMartes == 0 || valorHorarioMiercoles == 0 || valorHorarioJueves == 0 || valorHorarioViernes == 0){
+        alert("Complete los Campos");
         return;
       }
       let existeID = false;
@@ -95,4 +155,5 @@ export default {
     },
   },
 };
+
 </script>

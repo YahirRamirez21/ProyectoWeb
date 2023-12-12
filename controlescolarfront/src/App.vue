@@ -26,7 +26,7 @@
     .contenedorglobal {
         background-color: #adcdea;
         margin-top: -50px;
-        height: 100vh;
+        height: 1400px;
     }
 
     div {
@@ -69,6 +69,11 @@
   outline: none;
   padding: 10px 50px;
 }
+
+.botonesacciones:hover {
+    background-color: rgb(0, 39, 108, .8);
+    cursor: pointer;
+}
 .clasearticle {
   background-color: #014ba0;
   border-radius: 5px;
@@ -76,12 +81,13 @@
   margin: 0px auto;
   text-align: center;
   width: 500px;
+  padding-bottom: 30px;
 }
 .clasearticle input {
   background: #afcdea;
   border: none;
   border-radius: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   margin-top: 10px;
   height: 30px;
   text-align: center;
@@ -89,9 +95,10 @@
 }
 .clasearticle label{
     color: white;
+    font-family: sans-serif;
 }
 .claseselect {
-  background: #96b3ff;
+  background: #afcdea;
   margin: 10px 0px 10px 0px;
   width: 100px;
 }
@@ -104,10 +111,12 @@
   height: 100vh;
   margin: 0 auto;
   width: 95%;
+  height: 120vh;
 }
 .subtitulo{
   margin: 0px auto;
-  margin-top: 70px;
+  margin-top: 50px;
+  font-family: sans-serif;
 }
 
 </style>

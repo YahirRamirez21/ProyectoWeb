@@ -11,7 +11,13 @@
         <input type="text" name="nombre" id="nombre" v-model="materias.nombre" />
         <br />
         <label for="creditos">Creditos</label> <br />
-        <input type="text" name="creditos" id="creditos" v-model="materias.creditos" /><br />
+        <select class="claseselect" name="creditos" id="creditos" v-model="materias.creditos">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
       </article>
       <button @click.prevent="nuevaMateria()" class="botonesacciones">Nueva Materia</button>
     </section>
@@ -33,7 +39,8 @@ export default {
     nuevaMateria: async function () {
       let valorClave = document.getElementById("clavemateria").value;
       let valorNombre = document.getElementById("nombre").value;
-      if (valorClave == 0 || valorNombre == 0) {
+      let creditos = document.getElementById("creditos").value;
+      if (valorClave == 0 || valorNombre == 0 || creditos == 0) {
         alert("Complete los Campos")
         return;
       }

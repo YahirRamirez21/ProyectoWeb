@@ -71,10 +71,18 @@ export default {
       this.grupos = g;
     },
     actualizarGrupo: async function () {
-      let valorLimite = document.getElementById("limitealumnos").value;
+      let valorClaveM = document.getElementById("clavemateria").value;
+      let valorClaveMaestro = document.getElementById("clavemaestro").value;
+      let valorLimite= document.getElementById("limitealumnos").value;
       let valorInscritos = document.getElementById("inscritos").value;
-      if ( valorLimite == 0 || valorInscritos == 0) {
-        alert("Complete los Campos")
+      let valorHorarioLunes = document.getElementById("horariolunes").value;
+      let valorHorarioMartes = document.getElementById("horariomartes").value;
+      let valorHorarioMiercoles = document.getElementById("horariomiercoles").value;
+      let valorHorarioJueves = document.getElementById("horariojueves").value;
+      let valorHorarioViernes = document.getElementById("horarioviernes").value;
+
+      if ( valorLimite == 0 || valorInscritos == 0 || valorClaveM == 0 || valorClaveMaestro == 0 || valorHorarioLunes == 0 || valorHorarioMartes == 0 || valorHorarioMiercoles == 0 || valorHorarioJueves == 0 || valorHorarioViernes == 0){
+        alert("Complete los Campos");
         return;
       }
       const res = await axios.put(URL_DATOS + "/grupos/" + this.clavegrupo, {

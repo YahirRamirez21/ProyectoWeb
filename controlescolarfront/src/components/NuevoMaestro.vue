@@ -55,7 +55,11 @@ export default {
     nuevoMaestro: async function () {
       let valorClave = document.getElementById("clavemaestro").value;
       let valorNombre = document.getElementById("nombre").value;
-      if (valorClave == 0 || valorNombre == 0) {
+      let departamento = document.getElementById("departamento").value;
+      let estatus = document.getElementById("estatus").value;
+
+      console.log("Valor departamento"+departamento)
+      if (valorClave == 0 || valorNombre == 0 || departamento == "" || estatus =="") {
         alert("Complete los Campos")
         return;
       }

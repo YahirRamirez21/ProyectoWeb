@@ -1,5 +1,23 @@
 <template>
   <div class="GruposCargaLista">
+    <a class="back" href="http://localhost:8080"
+      ><svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon icon-tabler icon-tabler-arrow-left"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+        stroke="currentColor"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M5 12l14 0" />
+        <path d="M5 12l6 6" />
+        <path d="M5 12l6 -6" /></svg
+    ></a>
     <section class="buscar">
       <!-- <label>Busqueda de Carga por alumno</label><br /> -->
       <article class="buscar__article">
@@ -45,6 +63,10 @@
         </section>
       </section>
     </div>
+    <article id="alerta">
+      <span id="alertaMensaje"></span>
+      <a id="quitar" href="#" class="quitar"></a>
+    </article>
   </div>
 </template>
 
@@ -104,8 +126,21 @@ export default {
     seleccionarGrupo: async function (grupos) {
       //console.log(grupo.clavemateria);
       let numcon = document.getElementById("ncontrol").value;
+      let alerta = document.getElementById("alerta");
+      let mensaje = document.getElementById("alertaMensaje");
+      let quitar = document.getElementById("quitar");
+
+      quitar.addEventListener('click', function() {
+        alerta.classList.remove("alerta");
+        alerta.classList.add("alertaQuitar");
+      });
+
       if (grupos.limite - grupos.inscritos == 0) {
         console.log(this.gruposcarga.limite - this.gruposcarga.inscritos);
+        mensaje.textContent = "Grupo agotado";
+        quitar.textContent = "X";
+        alerta.classList.remove("alertaQuitar");
+        alerta.classList.add("alerta");
         alert("Grupo agotado");
         return;
       }
@@ -129,6 +164,35 @@ export default {
 <style scoped>
 * {
   font-family: sans-serif;
+}
+
+.alerta {
+  background: white;
+  color: #000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 400px;
+  width: 500px;
+  transition: all .5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.alertaQuitar {
+  display: none;
+}
+
+.quitar {
+  color: #000;
+  text-decoration: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 30px;
+  font-size: 30px;
 }
 
 .encabezados {
@@ -163,6 +227,7 @@ export default {
   background-color: #adcdea;
   padding: 10px;
 }
+
 .grupos {
   width: 500px;
   display: grid;

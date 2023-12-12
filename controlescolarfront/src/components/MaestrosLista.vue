@@ -92,6 +92,7 @@
         gap: 20px;
         height: 100vh;
         border-radius: 10px;
+        
     }
 
     .botonNuevo {
@@ -137,6 +138,8 @@
         text-align: center;
         padding: 20px;
         color: white;
+        font-family: sans-serif;       
+        font-size: 15px;
     }
 
     tr:nth-child(even) {

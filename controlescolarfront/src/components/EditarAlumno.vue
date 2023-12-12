@@ -10,7 +10,10 @@
         <label for="carrera">Carrera del Alumno</label> <br />
         <input type="text" name="carrera" id="carrera" v-model="alumnos.carrera" /><br />
         <label for="estatus">Estatus del Alumno</label> <br />
-        <input type="text" name="estatus" id="estatus" v-model="alumnos.estatus" />
+        <select class="claseselect" name="estatus" id="estatus" v-model="alumnos.estatus">
+          <option value="A">A</option>
+          <option value="B">B</option>
+        </select>
         <br />
       </article>
       <button @click.prevent="actualizarAlumno()" class="botonesacciones">Actualizar Alumno</button>

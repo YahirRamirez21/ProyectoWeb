@@ -69,9 +69,13 @@ export default {
       this.maestros = m;
     },
     actualizarMaestro: async function () {
-      let nomM = document.getElementById("nombre").value;
-      if(nomM==0){
-        alert("Complete los campos");
+      let valorNombre = document.getElementById("nombre").value;
+      let departamento = document.getElementById("departamento").value;
+      let estatus = document.getElementById("estatus").value;
+
+      console.log("Valor departamento"+departamento)
+      if (valorNombre == "" || departamento == "" || estatus =="") {
+        alert("Complete los Campos")
         return;
       }
       const res = await axios.put(URL_DATOS + "/maestros/" + this.clavemaestro, {

@@ -13,7 +13,10 @@
         <label for="carrera">Carrera del Alumno</label> <br />
         <input type="text" name="carrera" id="carrera" v-model="alumnos.carrera" /><br />
         <label for="estatus">Estatus del Alumno</label> <br />
-        <input type="text" name="estatus" id="estatus" v-model="alumnos.estatus" />
+        <select class="claseselect" name="estatus" id="estatus" v-model="alumnos.estatus">
+          <option value="A">A</option>
+          <option value="B">B</option>
+        </select>
         <br />
       </article>
       <button @click.prevent="nuevoAlumno()" class="botonesacciones">Nuevo Alumno</button>
@@ -36,7 +39,9 @@ export default {
     nuevoAlumno: async function () {
       let valorNControl = document.getElementById("ncontrol").value;
       let valorNombre = document.getElementById("nombre").value;
-      if (valorNControl == 0 || valorNombre == 0) {
+      let valorCarrera = document.getElementById("carrera").value;
+      let valorEstatus = document.getElementById("estatus").value;
+      if (valorNControl == 0 || valorNombre == 0 || valorCarrera == 0 || valorEstatus == "") {
         alert("Complete los Campos")
         return;
       }
